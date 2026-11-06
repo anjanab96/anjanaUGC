@@ -143,7 +143,7 @@ h1, h2, h3, p, figure { margin: 0; }
 .hero__roles li:nth-child(1) { animation-delay: 1.1s; }
 .hero__roles li:nth-child(2) { animation-delay: 1.2s; }
 .hero__roles li:nth-child(3) { animation-delay: 1.3s; }
-.hero__roles li + li::before { content: "•"; margin: 0 .6em; }
+.hero__roles li + li::before { content: "\2022"; margin: 0 .6em; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 .socials { display: flex; gap: 12px; opacity: 0; animation: fadeIn .8s 1.45s var(--ease) forwards; }
@@ -171,6 +171,7 @@ h1, h2, h3, p, figure { margin: 0; }
     grid-template-columns: 58% 42%;
     grid-template-rows: 1fr;
     align-items: center;
+    container-type: inline-size;
   }
   .hero__media { grid-column: 1; grid-row: 1; align-self: stretch; }
   .hero__media img { height: 116%; }
@@ -181,22 +182,14 @@ h1, h2, h3, p, figure { margin: 0; }
     padding-left: clamp(40px, 8vw, 140px);
   }
   .hero__name { flex-wrap: nowrap; font-size: clamp(4.5rem, 9.6vw, 11.5rem); }
-  .hero__roles, .hero .socials { margin-left: auto; width: 42%; padding-left: 4vw; }
+  /* span exactly the coral column (42% of the hero) and center inside it */
+  .hero__roles, .hero .socials {
+    align-self: flex-end; width: 42cqw; margin-right: calc(-1 * var(--gutter));
+    justify-content: center;
+  }
   .hero__roles { order: -1; margin-bottom: -8px; }
   .hero__hey { order: -2; }
 }
-
-/* ---------- Marquee ---------- */
-.marquee {
-  background: var(--ink); color: var(--yellow);
-  overflow: hidden; white-space: nowrap;
-  padding: 14px 0;
-  font-family: var(--f-display); font-weight: 900; font-stretch: 125%; font-variation-settings: "wdth" 125;
-  text-transform: uppercase; font-size: clamp(1rem, 2.4vw, 1.6rem);
-  transform: rotate(-1.5deg) scale(1.03);
-  position: relative; z-index: 3;
-}
-.marquee__track { display: inline-flex; will-change: transform; }
 
 /* ---------- Videos ---------- */
 .videos { background: var(--white); padding: clamp(72px, 10vw, 140px) 0; }
@@ -216,7 +209,7 @@ h1, h2, h3, p, figure { margin: 0; }
   text-align: center;
 }
 .vcard__tag {
-  display: block;
+  display: block; white-space: nowrap;
   background: var(--coral-soft); color: var(--ink);
   border-radius: var(--radius) var(--radius) 0 0;
   padding: 14px 10px;
@@ -237,20 +230,25 @@ h1, h2, h3, p, figure { margin: 0; }
 .vcard--end { display: grid; place-items: center; flex-basis: min(60vw, 260px); }
 
 /* Desktop: pin the section and translate the row sideways as you scroll down */
-@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 900px) and (min-height: 820px) and (prefers-reduced-motion: no-preference) {
   .videos.is-pinned { padding: 0; }
   .videos.is-pinned .videos__pin {
+    /* video height = whatever is left after the header, so nothing spills into the hero */
+    --fh: clamp(240px, calc(100vh - 400px), 60vh);
     position: sticky; top: 0; height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
+    display: flex; flex-direction: column; justify-content: safe center;
+    padding-top: clamp(84px, 11vh, 130px);
     overflow: hidden;
   }
-  .videos.is-pinned .videos__head { width: 100%; margin-bottom: 3vh; }
+  .videos.is-pinned .videos__head { width: 100%; margin-bottom: clamp(16px, 3vh, 36px); }
+  .videos.is-pinned .videos__head .title { font-size: clamp(2.2rem, min(6vw, 9vh), 5rem); }
+  .videos.is-pinned .lede { max-width: none; }
   .videos.is-pinned .videos__track {
     overflow: visible; scroll-snap-type: none;
     will-change: transform;
   }
-  .videos.is-pinned .vcard { flex-basis: auto; width: clamp(240px, calc(58vh * 9 / 16), 380px); }
-  .videos.is-pinned .vcard__frame { max-height: 58vh; aspect-ratio: auto; height: 58vh; }
+  .videos.is-pinned .vcard { flex-basis: auto; width: clamp(200px, calc(var(--fh) * 9 / 16), 380px); }
+  .videos.is-pinned .vcard__frame { aspect-ratio: auto; height: var(--fh); }
 }
 
 /* ---------- Pills ---------- */

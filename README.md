@@ -4,7 +4,7 @@ Hand-built replacement for the Canva site. Plain HTML/CSS/JS, no build step.
 
 - `index.html` — content and structure
 - `styles.css` — layout, breakpoints (600 / 700 / 800 / 900 / 1100px), colors at the top under `:root`
-- `main.js` — scroll motion (reveals, parallax, pinned video row, marquee, nav)
+- `main.js` — scroll motion (reveals, parallax, pinned video row, nav)
 - `assets/img/` — photos
 
 ## Run locally
