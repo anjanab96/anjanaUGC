@@ -194,10 +194,13 @@ h1, h2, h3, p, figure { margin: 0; }
 /* ---------- Videos ---------- */
 .videos { background: var(--white); padding: clamp(72px, 10vw, 140px) 0; }
 .videos__head { padding: 0 var(--gutter); max-width: var(--max); margin: 0 auto 40px; }
+.videos__head .lede { max-width: none; }
 .videos__track {
   display: flex; gap: clamp(16px, 2vw, 28px);
   padding: 8px var(--gutter) 24px;
   overflow-x: auto;
+  overflow-y: hidden; /* sideways only, so it never fights the page scroll */
+  overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -242,7 +245,6 @@ h1, h2, h3, p, figure { margin: 0; }
   }
   .videos.is-pinned .videos__head { width: 100%; margin-bottom: clamp(16px, 3vh, 36px); }
   .videos.is-pinned .videos__head .title { font-size: clamp(2.2rem, min(6vw, 9vh), 5rem); }
-  .videos.is-pinned .lede { max-width: none; }
   .videos.is-pinned .videos__track {
     overflow: visible; scroll-snap-type: none;
     will-change: transform;
@@ -362,7 +364,6 @@ h1, h2, h3, p, figure { margin: 0; }
 .js .reveal.in { opacity: 1; transform: none; }
 .js .reveal-img img { clip-path: inset(100% 0 0 0); transform: scale(1.25); transition: clip-path 1.2s var(--ease), transform 1.6s var(--ease); transition-delay: var(--d, 0s); }
 .js .reveal-img.in img { clip-path: inset(0 0 0 0); transform: scale(1); }
-.js .ph.reveal-img.in:hover img { transform: scale(1.05); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
