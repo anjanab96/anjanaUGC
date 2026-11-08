@@ -268,7 +268,6 @@ h1, h2, h3, p, figure { margin: 0; }
   box-shadow: 4px 4px 0 var(--ink);
 }
 .pill:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); background: var(--yellow); }
-.pill--ghost { background: transparent; }
 
 /* ---------- Modeling ---------- */
 .modeling { background: var(--cream); padding: clamp(72px, 10vw, 140px) var(--gutter); overflow: hidden; }
