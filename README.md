@@ -22,6 +22,7 @@ Then open http://localhost:5173.
 - **Parallax amount:** `data-parallax` on the hero and about images.
 - **Pinned video scroll speed:** `PIN_SLOW` in `main.js`.
 - Motion turns off automatically for visitors with "reduce motion" enabled.
+- After changing `styles.css` or `main.js`, bump the `?v=` number on its link in `index.html` so browsers fetch the new file instead of a cached copy.
 
 ## Deploy
 

@@ -211,7 +211,7 @@ h1, h2, h3, p, figure { margin: 0; }
 }
 .videos__track::-webkit-scrollbar { display: none; }
 .vcard {
-  flex: 0 0 min(78vw, 320px);
+  flex: 0 0 min(74.1vw, 304px);
   scroll-snap-align: start;
   text-align: center;
 }
@@ -241,7 +241,7 @@ h1, h2, h3, p, figure { margin: 0; }
   .videos.is-pinned { padding: 0; }
   .videos.is-pinned .videos__pin {
     /* video height = whatever is left after the header, so nothing spills into the hero */
-    --fh: clamp(240px, calc(100vh - 400px), 60vh);
+    --fh: clamp(228px, calc((100vh - 400px) * .95), 57vh);
     position: sticky; top: 0; height: 100vh;
     display: flex; flex-direction: column; justify-content: safe center;
     padding-top: clamp(84px, 11vh, 130px);
@@ -253,7 +253,7 @@ h1, h2, h3, p, figure { margin: 0; }
     overflow: visible; scroll-snap-type: none;
     will-change: transform;
   }
-  .videos.is-pinned .vcard { flex-basis: auto; width: clamp(200px, calc(var(--fh) * 9 / 16), 380px); }
+  .videos.is-pinned .vcard { flex-basis: auto; width: clamp(190px, calc(var(--fh) * 9 / 16), 361px); }
   .videos.is-pinned .vcard__frame { aspect-ratio: auto; height: var(--fh); }
 }
 
